@@ -1,0 +1,32 @@
+<!--
+ Copyright (c) 2014, 2022, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+ <h1>Registration Page</h1>
+ <div>
+   <oj-form-layout id="formLayoutOptions" max-columns="1"  direction ="row"class="oj-sm-margin-1x-top">
+     <oj-input-text id="input-user-name" label-hint="User Name" value="{{inputUserNameValue}}" class="oj-sm-margin-1x-top"></oj-input-text>
+     <oj-input-text id="input-email" label-hint="Email" value="{{inputEmailValue}}"class="oj-sm-margin-1x-top"></oj-input-text>
+     <oj-input-password id="input-password" label-hint="Password" value="{{inputPasswordValue}}" class="oj-sm-margin-1x"></oj-input-password>
+     <oj-input-password id="input-password" label-hint="Confirm Password" value="{{inputPasswordValue}}" class="oj-sm-margin-1x"></oj-input-password>
+     <oj-combobox-one
+               id="combobox1"
+               value=""
+               label-hint="Role"
+               class="oj-form-control-max-width-md">
+               <oj-option value="Admin">Admin</oj-option>
+               <oj-option value="User">User</oj-option>
+             </oj-combobox-one>
+    </oj-form-layout>
+    <oj-button id="btn-signin">
+      <span>
+        <oj-bind-text value="[[signinValue]]" class="oj-button-sm"></oj-bind-text>
+      </span>
+    </oj-button>
+   </div>
+   </div>
+ </div>
+ </div>
+</div>
