@@ -1,0 +1,39 @@
+<!--
+ Copyright (c) 2014, 2022, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+    <h1>Login Page</h1>
+    <div>
+      <oj-form-layout id="formLayoutOptions" max-columns="1" direction ="row">
+        <oj-input-text id="input-user-name" label-hint="User Name" value="{{inputUserNameValue}}"></oj-input-text>
+        <oj-input-password id="input-password" label-hint="Password" value="{{inputPasswordValue}}"></oj-input-password>
+        <oj-combobox-one
+                  id="combobox1"
+                  value=""
+                  label-hint="Role"
+                  class="oj-form-control-max-width-md">
+                  <oj-option value="Admin">Admin</oj-option>
+                  <oj-option value="User">User</oj-option>
+                </oj-combobox-one>
+      </oj-form-layout>
+      
+      <oj-form-layout id="" max-columns="2" direction ="row">
+        <div>
+        <oj-button id="btn-signin">
+          <span>
+            <oj-bind-text value="[[signinValue]]" class="oj-button-sm"></oj-bind-text>
+          </span>
+        </oj-button>
+        <oj-form-layout id="" max-columns="2" class="oj-lg-margin-2x-top" direction ="row">
+              <div><a href="http://localhost:8000/?ojr=forgetpass" class="oj-link-standalone">Forget Password?</a></div>
+              <div><a href="http://localhost:8000/?ojr=registration" class="oj-link-standalone">Registration?</a></div>
+            </oj-form-layout>
+            
+       </oj-form-layout>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>

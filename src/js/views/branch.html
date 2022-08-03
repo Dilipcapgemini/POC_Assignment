@@ -1,0 +1,74 @@
+<!--
+ Copyright (c) 2014, 2022, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+
+ <div class="oj-hybrid-padding">
+    <h4>Branches Tab</h4>
+   
+    <oj-form-layout id="formLayoutOne" max-columns="2" direction="row">
+      <div>*Title</div>
+      <oj-input-text id="input-text" label-hint="Branch1"  value="{{inputtextValue}}"></oj-input-text>
+  
+      <div>*ID</div>
+      <oj-input-text id="input-id" label-hint="BR1" value="{{inputidValue}}"></oj-input-text>
+
+      <div>*Cycle the Branch</div>
+      <oj-radioset id="combobox1" value="" label-hint="" class= "oj-form-control-max-width-sm" >
+        <oj-option value="yes">Yes</oj-option>
+        <oj-option value="NO">No</oj-option>
+      </oj-radioset>
+      
+      <div>*Count of Cycles</div>
+      <oj-input-number id="input-number" label-hint="" value="{{inputnumberValue}}" max="100" min="2" step="2"></oj-input-number>
+   
+      <div>*Assign Subjects Using</div>
+      <oj-checkboxset id="enabledCheckboxset" >
+               <oj-option value="TreatentArm">Treatment Arm</oj-option>
+               <oj-option value="FormQuestion">Form Question</oj-option>
+             </oj-Checkboxset>
+
+     <oj-label-value>
+        <oj-label slot="label" for="input">Form Question Settings</oj-label>
+     </oj-label-value>
+    
+     <oj-form-layout id="formLayoutTwo" max-columns="2" direction="row">
+     <div>*Form</div>
+     <oj-combobox-one id="combobox1" value='["Readings"]' label-hint="" class="oj-form-control-max-width-md">
+              <oj-option value="reading">Readings</oj-option>
+              <oj-option value="writing">Writing</oj-option>
+    </oj-combobox-one>
+
+     <div>*Question</div>
+     <oj-combobox-one id="combobox1" value='["Any illness?"]' label-hint="" class="oj-form-control-max-width-md">
+            <oj-option value="anyillness?">Any illness ?</oj-option>
+            <oj-option value="noanyillness">No Any illness</oj-option>
+            </oj-combobox-one>
+
+    <div>*Answer</div>
+    <oj-combobox-one id="combobox1" value='["Yes"]' label-hint="" class="oj-form-control-max-width-md">
+         <oj-option value="yes">Yes</oj-option>
+         <oj-option value="No">Writing</oj-option>
+    </oj-combobox-one>
+
+    <div>*Visit</div>
+    <oj-combobox-one id="combobox1" value='["Select"]' label-hint="" class="oj-form-control-max-width-md">
+         <oj-option value="yes">Yes</oj-option>
+         <oj-option value="No">No</oj-option>
+    </oj-combobox-one>
+</oj-form-layout>
+</oj-form-layout>
+ 
+</div>
+<div style="float: right;">
+<oj-button id="btn-cancel" >
+        Cancel
+      </oj-button>
+<oj-button id="btn-save" >
+  Save & Add Another
+</oj-button>
+<oj-button id="btn-continue" chroming="callToAction">
+  Save
+</oj-button>
+</div>
