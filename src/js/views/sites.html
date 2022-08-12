@@ -5,9 +5,17 @@
  -->
 
  <div id="train-container" >
-  <h3>Sites Tab</h3>
-  <oj-train id="train1"
-            selected-step="{{currentStepValue}}" 
-            steps="[[stepArray]]">
-  </oj-train>
-  </div>
+    <h3>Site Tab</h3>
+    <oj-train id="train3"
+              class="oj-train-stretch"
+              selected-step="{{currentStepValue}}"
+              steps="[[stepArray]]"
+              style="max-width:700px;min-width:240px;margin-left:auto;margin-right:auto;" >
+    </oj-train>
+  <br/>
+  <div data-bind="ojModule: 'myTrain-modules/stp1'"></div>
+  <div data-bind="ojModule: 'myTrain-modules/stp2'"></div>
+  <div data-bind="ojModule: 'myTrain-modules/stp3'"></div>
+  <div data-bind="ojModule: 'myTrain-modules/stp4'"></div>
+  <br/>
+</div>

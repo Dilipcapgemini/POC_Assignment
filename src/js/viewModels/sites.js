@@ -9,8 +9,8 @@
  * Your sites tab ViewModel code goes here
  */
 
-define(['../accUtils', 'knockout',, 'ojs/ojknockout', 'ojs/ojtrain', 'ojs/ojbutton', 'ojs/ojmodule'],
-function(accUtils,ko){
+define([ 'ojs/ojcore', 'knockout','ojs/ojbootstrap', 'ojs/ojknockout', 'ojs/ojtrain', 'ojs/ojbutton','ojs/ojmodule' ],
+function(oj, ko, Bootstrap){
   
     function TrainViewModel() {
       var self = this;

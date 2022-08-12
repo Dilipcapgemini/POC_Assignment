@@ -8,47 +8,115 @@
 /*
  * Your about ViewModel code goes here
  */
-define(['../accUtils'],
- function(accUtils) {
-    function AboutViewModel() {
-      // Below are a set of the ViewModel methods invoked by the oj-module component.
-      // Please reference the oj-module jsDoc for additional information.
 
-      /**
-       * Optional ViewModel method invoked after the View is inserted into the
-       * document DOM.  The application can put logic that requires the DOM being
-       * attached here.
-       * This method might be called multiple times - after the View is created
-       * and inserted into the DOM and after the View is reconnected
-       * after being disconnected.
-       */
-      this.connected = () => {
-        accUtils.announce('About page loaded.', 'assertive');
-        document.title = "About";
-        // Implement further logic if needed
-      };
+define(['knockout', 'ojs/ojbootstrap', 'ojs/ojarraydataprovider', 'ojs/ojknockout-keyset', 'ojs/ojknockout', 'ojs/ojtable', 'ojs/ojcheckboxset', 'ojs/ojlabel', 'ojs/ojbutton'],
+function (ko,  Bootstrap, ArrayDataProvider, keySet) {
+  function AboutViewModel() {
+    this.deptArray = [{ StudyRole: 'Template-CRA', Type: 'Sponsor'},
+        { StudyRole: 'Template-clinical Supply Manager' , Type: 'Sponsor' },
+        { StudyRole: 'Template-Data Manager' , Type: 'Sponsor' },
+        { StudyRole: 'Template-Medical Monitor', Type: 'Sponsor' },
+        { StudyRole: 'Template-Pharmacy User', Type: 'Site' },
+        { StudyRole:'Template-Production Admin', Type: 'Sponsor'},
+        { StudyRole: 'Template-Rules Designer', Type: 'Sponsor'},
+        { StudyRole: 'Template-Site Administrator', Type:'Sponsor' },
+        { StudyRole: 'Template-Site User', Type: 'Site'},
+        { StudyRole:'Template-Statistician', Type: 'Sponsor'},
+        { StudyRole: 'Template-Rules Designer', Type: 'Design'}];
+        
+    this.dataprovider = new ArrayDataProvider(this.deptArray, { keyAttributes: 'StudyRole' });
+    this.columnArray = [{ headerTemplate: 'headerCheckTemplate',
+      headerText:'Select All',
+      template: 'checkTemplate',
+      sortable: 'disabled'
+    },
+    { headerText: 'Study Role',
+      field: 'StudyRole',
+      id: 'StudyRole' },
+    { headerText: 'Type',
+      field: 'Type' }];
 
-      /**
-       * Optional ViewModel method invoked after the View is disconnected from the DOM.
-       */
-      this.disconnected = () => {
-        // Implement if needed
-      };
+    this.selectedItems = new keySet.ObservableKeySet();
+    this.headerCheckStatus = ko.observable();
 
-      /**
-       * Optional ViewModel method invoked after transition to the new View is complete.
-       * That includes any possible animation between the old and the new View.
-       */
-      this.transitionCompleted = () => {
-        // Implement if needed
-      };
-    }
+    // get checkbox selected value based on selectedItems and selectAll state
+    this.handleCheckbox = function (id) {
+      var isChecked = this.selectedItems().has(id);
+      return isChecked ? ['checked'] : [];
+    }.bind(this);
 
-    /*
-     * Returns an instance of the ViewModel providing one instance of the ViewModel. If needed,
-     * return a constructor for the ViewModel so that the ViewModel is constructed
-     * each time the view is displayed.
-     */
-    return AboutViewModel;
+    this.checkboxListener = function (event) {
+      if (event.detail != null) {
+        var value = event.detail.value;
+
+            // need to convert to Number to match the DepartmentId key type
+        var key = Number(event.target.dataset.rowKey);
+        if (value.length > 0 && !this.selectedItems().has(key)) {
+          this.selectedItems.add([key]);
+        } else if (value.length === 0 && this.selectedItems().has(key)) {
+          this.selectedItems.delete([key]);
+        }
+      }
+    }.bind(this);
+
+    this.headerCheckboxListener = function (event) {
+      if (event.detail != null) {
+        var value = event.detail.value;
+        if (value.length > 0) {
+          this.selectedItems.addAll();
+        } else if (value.length === 0 && event.detail.updatedFrom == 'internal') {
+          this.selectedItems.clear();
+        }
+      }
+    }.bind(this);
+
+    this.selectionListener = function (event) {
+      var selected = event.detail.value.row;
+      if (selected.isAddAll()) {
+        selected.deletedValues().size > 0 ? this.headerCheckStatus([]) : this.headerCheckStatus(['checked']);
+      } else {
+        this.headerCheckStatus([]);
+      }
+      // show current selection in textarea
+      this.printCurrentSelection(selected);
+    }.bind(this);
+
+    this.printCurrentSelection = function (selected) {
+      var selectionTxt = '';
+
+      if (selected.isAddAll()) {
+        var iterator = selected.deletedValues();
+        iterator.forEach(function (key) {
+          selectionTxt = selectionTxt.length === 0 ? key : selectionTxt + ', ' + key;
+        });
+
+        if (iterator.size > 0) {
+          selectionTxt = ' except ' + selectionTxt;
+        }
+        selectionTxt = 'Everything selected' + selectionTxt;
+      } else {
+        selected.values().forEach(function (key) {
+          selectionTxt = selectionTxt.length === 0 ? key : selectionTxt + ', ' + key;
+        });
+      }
+
+      document.getElementById('selectionCurrent').value = selectionTxt;
+    };
   }
-);
+  var vm = new AboutViewModel();
+
+  Bootstrap.whenDocumentReady().then(
+    function () {
+      var table = document.getElementById('table');
+      ko.applyBindings(vm, table);
+
+        // Need to block event propagation on checkbox click
+        // to prevent default table row selection
+      table.addEventListener('click', function (event) {
+        if (event.target.className.indexOf('oj-checkbox') !== -1) {
+          event.stopPropagation();
+        }
+      }, true);
+    }
+  );
+});

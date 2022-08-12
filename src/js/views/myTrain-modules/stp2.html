@@ -4,5 +4,68 @@
  as shown at https://oss.oracle.com/licenses/upl/
  -->
  <div class="oj-hybrid-padding">
-    <h1>stp2</h1>
-   </div>
+   <h1>Site Address</h1>
+   <oj-form-layout id="formLayoutOne" max-columns="2" direction="row">
+ 
+    
+     <div>Address 1 </div>
+     <oj-input-text id="input-address1" label-hint=""  value="{{inputaddress1Value}}"></oj-input-text>
+     
+     <div>Address 2 </div>
+     <oj-input-text id="input-address2" label-hint=""  value="{{inputaddress2Value}}"></oj-input-text>
+ 
+     <div>*City</div>
+     <oj-input-text id="input-city-name" label-hint="" value="{{inputcitynameValue}}"></oj-input-text>
+ 
+     <div>*Country</div>
+     <oj-combobox-one id="combobox1" value='["India"]' label-hint="" class="oj-form-control-max-width-md">
+             <oj-option value="India">India</oj-option>
+             <oj-option value="Australia">Australia</oj-option>
+             <oj-option value="South Africa">South Africa</oj-option>
+             <oj-option value="England">England</oj-option>
+             <oj-option value="Sri Lanka">Sri Lanka</oj-option>
+             <oj-option value="Nepal">Nepal</oj-option>
+             <oj-option value="Russia">Russia</oj-option>
+             <oj-option value="Bangladesh">Bangladesh</oj-option>
+     </oj-combobox-one>
+ 
+     <div>State/Province/Country</div>
+     <oj-input-text id="input-state-name" label-hint="" value="{{inputstatenameValue}}"></oj-input-text>
+ 
+     <div>*ZIP/Postal Code</div>
+     <oj-input-number id="input-zip" label-hint="" value="{{inputzipValue}}"></oj-input-number>
+ 
+     <div>*Time Zone</div>
+     <oj-combobox-one id="combobox1" value='["Select Time Zone"]' label-hint="" class="oj-form-control-max-width-md">
+             <oj-option value="Atlantic Standard Time (AST)">Atlantic Standard Time (AST)</oj-option>
+             <oj-option value="Eastern Standard Time (EST)">Eastern Standard Time (EST)</oj-option>
+             <oj-option value="Central Standard Time (CST)">Central Standard Time (CST)</oj-option>
+             <oj-option value="Mountain Standard Time (MST)">Mountain Standard Time (MST)</oj-option>
+             <oj-option value="Eastern Standard Time (EST)">Eastern Standard Time (EST)</oj-option> 
+     </oj-combobox-one>
+ 
+     <div>Phone </div>
+     <oj-input-number id="input-phone-number" label-hint="" value="{{inputphonenumberValue}}" ></oj-input-number>
+     
+     <div>Fax </div>
+     <oj-input-text id="input-fax" label-hint="" value="{{inputfaxValue}}" ></oj-input-text>
+     
+     <div>Email </div>
+     <oj-input-text id="input-email" label-hint="" value="{{inputemailValue}}" ></oj-input-text>
+     
+ </div>
+ 
+ <div style="float: left;">
+   <oj-button id="btn-back" >
+     Back
+ </oj-button>
+ <oj-button id="btn-cancel" >
+       Cancel
+ </oj-button>
+ </div>
+ <div style="float: right;">
+  <oj-button id="btn-next" >
+    Next
+  </oj-button>
+ </div>
+ 

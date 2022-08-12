@@ -3,6 +3,65 @@
  Licensed under The Universal Permissive License (UPL), Version 1.0
  as shown at https://oss.oracle.com/licenses/upl/
  -->
-<div class="oj-hybrid-padding">
-  <h1>Dashboard</h1>
-  </div>
+ <div class="oj-hybrid-padding">
+  <h4>Settings</h4>
+ 
+  <oj-form-layout id="formLayoutOne" max-columns="2" direction="row">
+
+   
+    <div>Search for site</div>
+    <oj-input-search id="input-search" label-hint="Search by Name"  value="{{inputsearchValue}}"></oj-input-search>
+    
+    <div>Principal Investigator (PI) Prefix</div>
+    <oj-input-text id="input-text" label-hint=""  value="{{inputtextValue}}"></oj-input-text>
+
+    <div>*Pl First Name</div>
+    <oj-input-text id="input-first-name" label-hint="" value="{{inputfirstnameValue}}"></oj-input-text>
+
+    <div>*Pl Last Name</div>
+    <oj-input-text id="input-last-name" label-hint="" value="{{inputlastnameValue}}"></oj-input-text>
+
+    <div>*Site Name</div>
+    <oj-input-text id="input-site-name" label-hint="" value="{{inputsitenameValue}}"></oj-input-text>
+
+    <div>*Site id</div>
+    <oj-input-number id="input-site-id" label-hint="" value="{{inputsiteidValue}}" ></oj-input-number>
+
+    <div>*Status</div>
+    <oj-combobox-one id="combobox1" value='["New"]' label-hint="" class="oj-form-control-max-width-md">
+            <oj-option value="New">New</oj-option>
+            <oj-option value="old">Old</oj-option>
+    </oj-combobox-one>
+
+    <div>*Mode</div>
+    <oj-select-many id="" label-hint="" value="{{selectManyValue}}">
+    <oj-option value="Testing">Testing</oj-option>
+    <oj-option value="Care">Care</oj-option>
+    <oj-option value="Help">Help</oj-option>
+    <oj-option value="precautionn">Precaution </oj-option>
+  </oj-select-many>
+    
+  <div>*Drug Destruction Capable</div>
+    <oj-radioset id="combobox1" value="" label-hint="" class= "oj-form-control-max-width-sm" >
+      <oj-option value="">Yes</oj-option>
+      <oj-option value="NO">No</oj-option>
+    </oj-radioset>
+
+    <div>DEA Number</div>
+    <oj-input-number id="input-dea-number" label-hint="" value="{{inputdeanumberValue}}" ></oj-input-number>
+    
+    <div>Expiration</div>
+    <oj-input-date id="input-date" label-hint="DD-MMM-YYYY" autocomplete="off" value="{{inputdateValue}}"></oj-input-date>
+
+</div>
+
+<div style="float: left;">
+<oj-button id="btn-cancel" >
+      Cancel
+</oj-button>
+</div>
+<div style="float: right;">
+ <oj-button id="btn-next" >
+   Next
+ </oj-button>
+</div>

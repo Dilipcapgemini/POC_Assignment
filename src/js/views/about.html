@@ -3,9 +3,47 @@
  Licensed under The Universal Permissive License (UPL), Version 1.0
  as shown at https://oss.oracle.com/licenses/upl/
  -->
-<div class="oj-hybrid-padding">
-  <h1>About Content Area</h1>
-  <div>
-      To change the content of this section, you will make edits to the about.html file located in the /js/views folder.
-  </div>
-</div>
+
+ <div class="oj-hybrid-padding">
+    <div id="sampleDemo" style="" class="demo-padding demo-container">
+      <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+                
+        <oj-table id='table' aria-label='Departments Table'
+                                        accessibility.row-header="StudyRole"
+                                        data='[[dataprovider]]'
+                                        columns='{{columnArray}}'
+                                        scroll-policy='loadMoreOnScroll'
+                                        selected.row='{{selectedItems}}'
+                                        on-selected-changed="{{selectionListener}}"
+                                        selection-mode='{"row": "multiple"}' 
+                                        columns-default='{"sortable": "enabled"}'
+                                        style='width: 100%;height:300px;'>
+            <template slot="headerCheckTemplate" >
+                <oj-checkboxset value='[[headerCheckStatus]]'
+                                on-value-changed='[[headerCheckboxListener]]'
+                                class='oj-checkboxset-no-chrome oj-selection-checkbox'
+                                id="table_header_checkbox">
+                    <oj-option  aria-label="Checkbox Select All" value="checked"></oj-option>
+                </oj-checkboxset>   
+            </template>
+            <template slot="checkTemplate" data-oj-as="cell">
+                <oj-checkboxset value='[[handleCheckbox(cell.key)]]'
+                                on-value-changed='[[checkboxListener]]'
+                                class='oj-checkboxset-no-chrome oj-selection-checkbox'
+                                :id="[['table_checkboxset' + cell.key]]"
+                                :data-row-key="{{cell.row.StudyRole}}">
+                    <oj-option :id="[['table_checkbox' + cell.key]]" aria-label="[['Checkbox Select Row ' + cell.row.StudyRole]]" value="checked"></oj-option>
+                </oj-checkboxset>   
+            </template>
+        </oj-table>
+        <br><br>
+        <label for="curr-selection">Current Selection:&nbsp;</label>
+        <br>
+        <textarea aria-label="Current Selection" id="selectionCurrent" style="height: 80px; width: 300px;"></textarea>
+        
+        
+        
+      </div>
+    </div>
+  
+ </div>

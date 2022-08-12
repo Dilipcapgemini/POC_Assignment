@@ -5,10 +5,10 @@
  -->
  <div class="oj-hybrid-padding">
   <h1>Admin</h1>
-   <div id ="componentDemoContent" style="width: 1px; min-width:100,">
+  <div id="admincontent" class ="demo-padding demo-container">
+   <div id ="componentDemoContent" style="width: 1px; min-width:100;">
    <div id="routing-container" class="oj-flex">
-    <div class="demo-navlist-container oj-flex-item oj-md-3 oj-sm-padding-5x-bottom oj-md-padding-5x-end">
-      <oj-navigation-list data="[[dataProvider]]" selection="{{selection.path}}">
+      <oj-navigation-list edge="start" data="[[childdataProvider]]" selection="{{selection.path}}">
          <template slot="itemTemplate" data-oj-as="item">
             <oj-bind-if test="[[item.data.detail]]">
                <li :id="[[item.data.path]]">
@@ -20,10 +20,12 @@
          </template>
       </oj-navigation-list>
     </div>
-    <div id="pageContent" class="oj-panel oj-bg-info-30 oj-flex-item oj-md-9">
-      <oj-module config ="[[childModule.koObservableConfig]]"></oj-module>
+    <div id="pageContent" class="oj-panel oj-bg-info-30 ">
+      <oj-module config ="[[childModule.koObservableConfig]]">
+         class="oj-flex demo-module">
+      </oj-module>
     </div>
-
    </div>
    </div>
- </div>
+   </div>
+ 

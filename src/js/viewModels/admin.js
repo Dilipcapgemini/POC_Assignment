@@ -8,40 +8,40 @@
 /*
  * Your Admin ViewModel code goes here
  */
-define(["../accUtils",  "ojs/ojcorerouter", "ojs/ojknockoutrouteradapter", "ojs/ojmodulerouter-adapter", "ojs/ojarraydataprovider", "knockout", "ojs/ojbootstrap", "ojs/ojknockout", "ojs/ojnavigationlist"], 
+define(['../accUtils',"ojs/ojcorerouter", "ojs/ojknockoutrouteradapter", "ojs/ojmodulerouter-adapter", "ojs/ojarraydataprovider", "knockout", "ojs/ojbootstrap", "ojs/ojknockout", "ojs/ojnavigationlist","ojs/ojmodule-element"], 
 function (accUtils, CoreRouter, KnockoutRouterAdapter, ModuleRouterAdapter, ArrayDataProvider, ko, ojbootstrap_1) {
 
     
     class AdminViewModel {
         constructor(args) {
+           this.args = args ;
            var self = this;
-           this.args = args; 
-           
+
            self.childRoutes = [
-                    { path: '', redirect: 'kits' },
-                    { path: 'kits', detail: { label: 'Kits' } },
-                    { path: 'branches', detail: { label: 'Branches' } },
-                    { path: 'trainings', detail: { label: 'Tranings' } },
-                    { path: 'roles', detail: { label: 'Roles' } },
-                    { path: 'sites', detail: { label: 'Sites' } },
-                    { path: 'enrolment', detail: { label: 'Enrolment' } }
+                    { path: "", redirect: "kits" },
+                    { path: "kits", detail: { label: "Kits" } },
+                    { path: "branches", detail: { label: "Branches" } },
+                    { path: "trainings", detail: { label: "Tranings" } },
+                    { path: "role", detail: { label: "Roles" } },
+                    { path: "sites", detail: { label: "Sites" } },
+                    { path: "enrollment", detail: { label: "Enrollment" } }
                    
                   ];
             
                // Create ADP with partial array, excluding first redirect route
-               this.dataProvider = new ArrayDataProvider(this.childRoutes.slice(1), {
+               self.dataProvider = new ArrayDataProvider(self.childRoutes.slice(1), {
                 keyAttributes: "path",
             });
-            
+           
             self.childRouter = this.args.parentRouter.createChildRouter(self.childRoutes);
                
             self.childModule = new ModuleRouterAdapter (self.childRouter, {
-                viewPath: "views/adminrouter",
+                viewPath: "views/adminrouter/",
                 ViewModelPath: "viewModels/adminrouter/",
             });
-            console.log (self.childModule);
+          
              // Create an observable to react to the current router state path
-             this.selection = new KnockoutRouterAdapter(self.childRouter);
+             self.selection = new KnockoutRouterAdapter(self.childRouter);
              // Synchronize the router, causing it to go to its default route
              self.childRouter.sync();
          
